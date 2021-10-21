@@ -29,6 +29,8 @@ import {
 } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router-dom';
 import { FaUserAlt, FaLock } from 'react-icons/fa';
+import authServices from '../../../services/authServices'
+import { useQuery } from 'react-query'
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -46,12 +48,19 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    fetchLogin(data);
+  };
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
   } = useForm();
+
+  const fetchLogin = (data) =>{
+    authServices.register(data.username, data.password, data.username)
+  }
+  const { isLoading, data, error } = useQuery('login', fetchLogin)
 
   const handleShowClick = () => setShowPassword(!showPassword);
   return (
@@ -84,7 +93,7 @@ export default function Login() {
               borderRadius={5}
             >
               <FormControl isInvalid={errors.name}>
-                <InputGroup
+              <InputGroup
                     size="lg">
                   <InputLeftElement
                     pointerEvents="none"
@@ -109,6 +118,33 @@ export default function Login() {
                   {errors.username && <span>This field is required</span>}
                   </FormErrorMessage>
                 </InputGroup>
+              <FormControl isInvalid={errors.name}>
+                <InputGroup
+                    size="lg">
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<CFaUserAlt color="white" />}
+                  />
+                  <Input
+                    id="firstname"
+                    name="firstname"
+                    type="text"
+                    placeholder="First Name"
+                    color="white"
+                    focusBorderColor="pink"
+                    {...register('firstname', {
+                      required: 'This is required',
+                      minLength: {
+                        value: 4,
+                        message: 'Minimum length should be 4',
+                      },
+                    })}
+                  />
+                  <FormErrorMessage>
+                  {errors.username && <span>This field is required</span>}
+                  </FormErrorMessage>
+                </InputGroup>
+              </FormControl>
               </FormControl>
               <FormControl>
                 <InputGroup
@@ -167,7 +203,7 @@ export default function Login() {
                 variant="solid"
                 size="lg"
                 colorScheme="pink"
-                isLoading={isSubmitting}
+                isLoading={isLoading}
                 type="submit"
               >
                 Login
