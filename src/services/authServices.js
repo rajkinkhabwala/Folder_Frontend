@@ -1,40 +1,19 @@
-import axios from 'axios';
-import config from '../config';
+import axiosInstance from "../axios";
 
-const path= "api/users/"
-const axiosInstance = axios.creare({
-    baseURL:config.url,
-    timeout: 5000,
-    headers:{
-        'Content-Type': 'multipart/form-data',
-        accept: 'multipart/form-data'
-    }
-})
+let path = "users/"
+
 const authServices = {
 
     login: (username, password) =>{
 
     },
-
-    register: (username,password, email) =>{
-        console.log({
-            "username": username,
-            "password": password,
-            "email": email
-        });
-        axiosInstance.post(path,{
-            "username": username,
-            "password": password,
-            "email": email
-        }
-        )
-        .then((res)=>{
-            console.log(res);
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-            
+    register: (username, password, email) => 
+    {
+        var formData = new FormData();
+        formData.append("username", username);
+        formData.append("password", password);
+        formData.append("email", email);
+        return axiosInstance.post(path, formData)
     }
 }
 export default authServices

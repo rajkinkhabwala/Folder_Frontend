@@ -1,3 +1,4 @@
+import React, { useCallback } from 'react';
 import {
   Flex,
   Heading,
@@ -13,9 +14,15 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  FormErrorMessage,
+  FormLabel,
+  FormControl,
+  Input,
 } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router-dom';
 import { FiUpload } from 'react-icons/fi';
+import Upload from './Upload';
+
 
 export default function SideBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -46,10 +53,10 @@ export default function SideBar() {
             <Modal onClose={onClose} isOpen={isOpen} isCentered>
               <ModalOverlay />
               <ModalContent>
-                <ModalHeader>Modal Title</ModalHeader>
+                <ModalHeader>Upload a File</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                  hello world is lorem500 this is fdkssdkb sedgnsjd eofj eig
+                  <Upload />
                 </ModalBody>
                 <ModalFooter>
                   <Button onClick={onClose}>Close</Button>
