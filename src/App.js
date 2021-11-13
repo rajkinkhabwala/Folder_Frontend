@@ -15,6 +15,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Dashboard from './layouts/dashboard';
 //import Login from './layouts/auth/login';
 import Register from './layouts/auth/register';
+process.env.CI = false
 function App() {
   let queryClient = new QueryClient();
   return (
