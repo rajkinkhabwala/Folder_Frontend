@@ -3,11 +3,8 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
-  Flex,
-  Text,
   Button,
   Textarea,
-  Box,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import React from 'react';

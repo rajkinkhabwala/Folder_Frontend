@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import {
   Flex,
   Heading,
@@ -14,10 +14,6 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  FormErrorMessage,
-  FormLabel,
-  FormControl,
-  Input,
 } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router-dom';
 import { FiUpload } from 'react-icons/fi';

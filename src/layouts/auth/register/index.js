@@ -5,7 +5,7 @@ import authServices from '../../../services/authServices';
 
 export default function Register() {
 
-  const { handleSubmit, register, formState: { errors, isSubmitting, isSubmitSuccessful }} = useForm();
+  const { handleSubmit, register, formState: { errors }} = useForm();
 
   const onSubmit = (data) => 
   {
